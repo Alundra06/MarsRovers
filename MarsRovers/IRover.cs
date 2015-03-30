@@ -14,5 +14,8 @@ namespace MarsRovers
         List<char> ListOfNasaInstructions { get; set; }
         void ProcessNASAInstructions();
         bool IsOutofBound { get; set; }
+        bool IsValidIRoverInitialPosition(int XofRover, int YofRover);
+        void LandRoverOnPlateau(char direction, int XofRover, int YofRover);
+        void SendInstructionstoRover(string ListofInstructions);
     }
 }

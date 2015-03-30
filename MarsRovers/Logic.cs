@@ -1,8 +1,11 @@
 ﻿
 using System.Collections.Generic;
+using System.Linq;
+
+
 namespace MarsRovers
 {
-    public class Logic : MarsRovers.ILogic
+    public class Logic : ILogic
     {
 
        
@@ -119,6 +122,6 @@ namespace MarsRovers
             return false;
           
         }
-
+        
     }
 }

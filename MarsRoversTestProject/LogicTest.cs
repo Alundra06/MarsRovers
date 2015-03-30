@@ -18,21 +18,46 @@ namespace MarsRovers
         {
             //arrange
             bool NotOutOfBoundexpected = false;
-            bool OutOfBoundexpected = true;
+      
             int InitialX=3;
             int InitialY=3;
             char Orientation = 'N';
-            int TableauTopX = 5;
-            int TableauTopY = 5;
+            int TableauTopX = 5; //X of top conrner of the tableau`
+            int TableauTopY = 5; //Y of top conrner of the tableau`
 
             //Act
             bool actualNotOutofBound = LogicClassInstance.IsRoverInstructionOutofBound(InitialX, InitialY, Orientation, TableauTopX, TableauTopY);
-            bool actualOutofBound = LogicClassInstance.IsRoverInstructionOutofBound(InitialX+2, InitialY, Orientation, TableauTopX, TableauTopY);
+            
 
             //Assert
             Assert.AreEqual(NotOutOfBoundexpected, actualNotOutofBound); //Not out of bound  (3,3) on (5,5) matrix
+            
+        }
+
+
+
+        // test Methods
+        [TestMethod()]
+        //Test if the new instruction for the rover is  out of the bounds of the tableau
+        public void IsRoverInstructionOutofBoundtest()
+        {
+            //arrange
+            bool OutOfBoundexpected = true;
+            int InitialX = 5;//The same as TableauTopX
+            int InitialY = 3;
+            char Orientation = 'E';
+            int TableauTopX = 5; //X of top conrner of the tableau`
+            int TableauTopY = 5; //Y of top conrner of the tableau`
+
+            //Act
+            bool actualOutofBound = LogicClassInstance.IsRoverInstructionOutofBound(InitialX, InitialY, Orientation, TableauTopX, TableauTopY);
+
+            //Assert
+            
             Assert.AreEqual(OutOfBoundexpected, actualOutofBound); //out of bound  (5,3) on (5,5) matrix
         }
+
+
 
         [TestMethod()]
 
@@ -62,10 +87,10 @@ namespace MarsRovers
         public void ChangePositionLogicTest()
         {
             //arrange
-            int expectedX1 = 5;
-            int expectedX2 = 4;
-            int expectedY1 = 5;
-            int expectedY2 = 4;
+            int expectedX1 = 4; 
+            int expectedX2 = 3;
+            int expectedY1 = 6;
+            int expectedY2 = 5;
             int initialX = 4;
             int initialY=5;
             char orientation1 = 'N';

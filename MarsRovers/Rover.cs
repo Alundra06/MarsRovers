@@ -7,7 +7,7 @@ namespace MarsRovers
     {
 
         private ILogic LogicClass;
-        public bool IsOutofBound{ get; set; }
+        public bool IsOutofBound{ get; set; } // To hold the value of the rover: True = the rover is out of bound , false = Not out of bounds
         public int XPosition  { get; set; } // The current X position of our rover
         public int YPosition { get; set; } // The current Y position of our Rover
         public int XPositionofPlateau { get; set; } // The upper-right X position of the pleateau
@@ -28,11 +28,12 @@ namespace MarsRovers
 
         public Rover()//The constructor
         {
+           //Initializations 
            ListOfNasaInstructions = new List<char>();
-           LogicClass = new Logic();
-           IsOutofBound = false;
+           LogicClass = new Logic();  //I could Implement IoC if I have more time
+           IsOutofBound = false;  //By default , the rover is NOT out of bound
         }
-        public void ProcessNASAInstructions()
+        public void ProcessNASAInstructions() //process the NASA instructions
         {
             //Loop trough the list of instructions char
             int i=0;
@@ -72,13 +73,32 @@ namespace MarsRovers
                 }
                 i++;
 
-
             }
         }
 
-        
+        public bool IsValidIRoverInitialPosition(int XofRover,int YofRover) // Check if the initial position of the rover is not out of bound
+        {
+            if (XofRover >XPositionofPlateau || YofRover > YPositionofPlateau)
+                return false;
+            else
+                return true;
+        }
+        public void LandRoverOnPlateau(char direction, int XofRover, int YofRover)
+        {
+           Direction = char.ToUpper(direction);
+           XPosition = XofRover;
+           YPosition = YofRover;
+        } // Change the X, Y and direction of a rover
 
+        public  void SendInstructionstoRover(string ListofInstructions)
+        {
+            for (int i = 0; i < ListofInstructions.Length; i++)
+            {
 
+                ListOfNasaInstructions.Add(char.ToUpper(ListofInstructions[i]));
+            }
+
+        }
 
     }
         
